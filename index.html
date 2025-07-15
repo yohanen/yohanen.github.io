@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Yohanen | Portfolio</title>
+  <meta name="description" content="Yohanen Dinagde Ejeta - Machine Learning & Web Developer Portfolio" />
+  <meta name="keywords" content="Yohanen, portfolio, machine learning, web development, data science, internships" />
+  <meta name="author" content="Yohanen Dinagde Ejeta" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     :root {
       --bg-color: #0f0c29;
@@ -15,6 +19,11 @@
       --highlight: #ffd369;
     }
 
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
     body {
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
@@ -24,22 +33,50 @@
       transition: background 0.3s, color 0.3s;
     }
 
+    body.light-mode {
+      --bg-color: #f0f2f5;
+      --text-color: #1c1c1c;
+      --header-bg: linear-gradient(135deg, #e0eafc, #cfdef3);
+      --section-bg: #ffffff;
+      --card-bg: #eeeeee;
+      --highlight: #e94560;
+    }
+
+    nav {
+      background: var(--section-bg);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid #333;
+    }
+
+    nav a {
+      color: var(--highlight);
+      margin: 0.5rem 1rem;
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
     header {
       background: var(--header-bg);
       color: white;
       text-align: center;
-      padding: 2rem 1rem;
+      padding: 3rem 1rem 2rem;
       position: relative;
     }
 
-    header h1 {
-      font-size: 2.5rem;
-      margin: 0.5rem 0;
-    }
-
-    header p {
-      font-size: 1.2rem;
-      margin: 0;
+    .hero-container {
+      max-width: 1000px;
+      margin: 0 auto;
     }
 
     .toggle-btn {
@@ -68,14 +105,11 @@
       background: var(--section-bg);
       border-radius: 10px;
       margin-bottom: 2rem;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      display: none;
     }
 
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
+    section.active {
+      display: block;
     }
 
     h2 {
@@ -119,34 +153,33 @@
     a:hover {
       text-decoration: underline;
     }
-
-    body.light-mode {
-      --bg-color: #f0f2f5;
-      --text-color: #1c1c1c;
-      --header-bg: linear-gradient(135deg, #e0eafc, #cfdef3);
-      --section-bg: #ffffff;
-      --highlight: #e94560;
-    }
   </style>
 </head>
 <body>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#resume">Resume</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
   <header>
-    <button class="toggle-btn" onclick="toggleTheme()">☀️ Light Mode</button>
-    <h1>Yohanen Dinagde Ejeta</h1>
-    <p>Tech Enthusiast | Machine Learning & Data Science | Open to Internships, Jobs, Remote Roles & Scholarship Opportunities</p>
+    <div class="hero-container">
+      <button class="toggle-btn" onclick="toggleTheme()">☀️ Light Mode</button>
+      <h1>Yohanen Dinagde Ejeta</h1>
+      <p>Tech Enthusiast | Machine Learning & Data Science | Open to Internships, Jobs, Remote Roles & Scholarships</p>
+    </div>
   </header>
 
-  <section>
+  <section id="about" class="active">
     <h2>✨ About Me</h2>
-    <p>
-      Hi! I'm Yohanen, a recent Bachelor of Computer Application (BCA) graduate from Uttaranchal University. I'm passionate about building real-world tech solutions, exploring new technologies, and contributing to communities that value innovation and learning.
-    </p>
-    <p>
-      I'm particularly interested in projects that combine education, technology, and social good. I enjoy collaborating, solving real-life problems through code, and learning as I go. Whether it’s backend logic or front-end user experiences, I strive to create meaningful impact through technology.
-    </p>
+    <p>Hi! I'm Yohanen, a recent Bachelor of Computer Application (BCA) graduate from Uttaranchal University. I'm passionate about building real-world tech solutions, exploring new technologies, and contributing to communities that value innovation and learning.</p>
+    <p>I love collaborating, solving real-life problems through code, and learning as I go. My focus is on combining education, technology, and social good.</p>
   </section>
 
-  <section>
+  <section id="skills">
     <h2>🔧 Skills</h2>
     <div class="skills">
       <span>Python</span>
@@ -167,79 +200,31 @@
     </div>
   </section>
 
-  <section>
-    <h2>📝 Blog</h2>
-    <p><strong>5 Lessons I Learned Building My First Full-Stack Project</strong> – A dive into what I learned while developing the Smart School Management System.</p>
-    <p><strong>Why I Love Machine Learning</strong> – Thoughts on the future of AI and its role in education and social good.</p>
-  </section>
-
-
-  <section class="project">
+  <section id="projects">
     <h2>📚 Featured Project</h2>
-
-    <h3>Login Page</h3>
-    <img src="loginpage.png" alt="Login Page Screenshot" />
-
-    <h3>Admin Dashboard</h3>
-    <img src="admindashboard.png" alt="Admin Dashboard Screenshot" />
-
-    <h3>Teacher Dashboard</h3>
-    <img src="teacherdashboard.png" alt="Teacher Dashboard Screenshot" />
-
-    <h3>Parent Dashboard</h3>
-    <img src="parentdashboard.png" alt="Parent Dashboard Screenshot" />
-
-    <p><strong>Smart School Management System</strong></p>
-    <p>
-      A full-stack web application built with CodeIgniter (PHP), MySQL, HTML, and CSS. It includes dashboards for Admin, Teacher, Student, and Parent users — allowing attendance tracking, grade management, library features, and parent-teacher communication tools.
-    </p>
-    <p>
-      ▶ <a href="https://github.com/yohanen/smart-school-management-system" target="_blank">View on GitHub</a>
-    </p>
+    <h3>Smart School Management System</h3>
+    <div class="project">
+      <img src="loginpage.png" alt="Smart School - Login Page" />
+      <img src="admindashboard.png" alt="Admin Dashboard View" />
+      <img src="teacherdashboard.png" alt="Teacher Dashboard View" />
+      <img src="parentdashboard.png" alt="Parent Dashboard View" />
+    </div>
+    <p>A full-stack web application built with CodeIgniter (PHP), MySQL, HTML, and CSS. Includes dashboards for Admin, Teacher, Student, and Parent for attendance tracking, grade management, library use, and communication tools.</p>
+    <p>▶ <a href="https://github.com/yohanen/smart-school-management-system" target="_blank">View on GitHub</a></p>
   </section>
 
-  <section>
+  <section id="resume">
     <h2>📄 Download Resume</h2>
-    <p>
-      You can download my resume here: 
-      <a href="Resume.pdf" target="_blank" download>Download Resume (PDF)</a>
-    </p>
+    <p>You can download my resume here: <a href="Resume.pdf" download>Download Resume (PDF)</a></p>
   </section>
 
   <section id="testimonials">
-  <h2>📜 Testimonials</h2>
-
-  <div class="testimonial">
-    <p>
-      <em>
-        “Mr. Yohanen Dinagde Ejeta is a highly dedicated and disciplined individual who consistently demonstrated strong academic commitment and intellectual curiosity throughout his Bachelor of Computer Applications (BCA) program. His ability to think outside the box, problem-solving mindset, and continuous pursuit of excellence made him stand out among his peers.”
-      </em>
-    </p>
-    <p><strong>— Prof. (Dr.) Sonal Sharma</strong><br>
-    Director, Uttaranchal School of Computing Sciences<br>
-    Uttaranchal University, Dehradun</p>
-  </div>
-
-  <div class="testimonial">
-    <p>
-      <em>
-        “Yohanen has shown exceptional performance in academics, research projects, and student-led initiatives. He was an active member of several key groups including the Robotics Club, Cyber Security Forum, Coding and Innovation Cell, and the Open-Source Community. His leadership, communication skills, and technical foundation make him a strong candidate for scholarships, higher studies, and tech jobs alike.”
-      </em>
-    </p>
-    <p><strong>— Dr. Sameer Dev Sharma</strong><br>
-    Associate Professor & Head of Department<br>
-    Uttaranchal School of Computer Sciences<br>
-    Uttaranchal University, Dehradun</p>
-  </div>
-</section>
-
-  <section>
-    <h2>📍 My Location</h2>
-    <p>I studied at Uttaranchal University and am currently based in India. Here’s where I’ve been learning and growing.</p>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3458.6881643665355!2d77.98079241544655!3d30.32556481134586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390929cb5e1d0629%3A0xbed7e901f43ad7d0!2sUttaranchal%20University!5e0!3m2!1sen!2sin!4v1625032001234!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+    <h2>📜 Testimonials</h2>
+    <p><em>"Mr. Yohanen Dinagde Ejeta is a highly dedicated and disciplined individual who consistently demonstrated strong academic commitment and intellectual curiosity."</em><br /><strong>— Prof. (Dr.) Sonal Sharma</strong></p>
+    <p><em>"Yohanen has shown exceptional performance in academics, research, and student-led initiatives. His leadership and technical skills are outstanding."</em><br /><strong>— Dr. Sameer Dev Sharma</strong></p>
   </section>
-  
-  <section>
+
+  <section id="contact">
     <h2>✉ Contact</h2>
     <p>
       GitHub: <a href="https://github.com/yohanen" target="_blank">github.com/yohanen</a><br />
@@ -255,8 +240,11 @@
 
   <script>
     const toggleBtn = document.querySelector('.toggle-btn');
-    const currentTheme = localStorage.getItem('theme');
+    const navLinks = document.querySelectorAll('nav a');
+    const sections = document.querySelectorAll('section');
 
+    // Theme persistence
+    const currentTheme = localStorage.getItem('theme');
     if (currentTheme === 'light') {
       document.body.classList.add('light-mode');
       toggleBtn.textContent = '🌙 Dark Mode';
@@ -271,19 +259,22 @@
       localStorage.setItem('theme', isLight ? 'light' : 'dark');
     }
 
-    const sections = document.querySelectorAll("section");
-    const revealOnScroll = () => {
-      const triggerBottom = window.innerHeight * 0.9;
-      sections.forEach(section => {
-        const boxTop = section.getBoundingClientRect().top;
-        if (boxTop < triggerBottom) {
-          section.classList.add("visible");
+    function showSection(id) {
+      sections.forEach(sec => {
+        sec.classList.remove('active');
+        if (sec.id === id) {
+          sec.classList.add('active');
         }
       });
-    };
+    }
 
-    window.addEventListener("scroll", revealOnScroll);
-    window.addEventListener("load", revealOnScroll);
+    navLinks.forEach(link => {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        showSection(targetId);
+      });
+    });
   </script>
 </body>
 </html>
