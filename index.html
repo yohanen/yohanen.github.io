@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Yohanen | Portfolio</title>
-  <meta name="description" content="Yohanen Dinagde Ejeta - Machine Learning & Web Developer Portfolio" />
-  <meta name="keywords" content="Yohanen, portfolio, machine learning, web development, data science, internships" />
-  <meta name="author" content="Yohanen Dinagde Ejeta" />
+  <meta name="description" content="Yohanen Dinagde Ejeta - Machine Learning & Web Developer Portfolio">
+  <meta name="keywords" content="Yohanen, portfolio, machine learning, web development, data science, internships">
+  <meta name="author" content="Yohanen Dinagde Ejeta">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     :root {
@@ -26,11 +26,8 @@
     body {
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      padding: 0;
       background: var(--bg-color);
       color: var(--text-color);
-      display: flex;
-      transition: all 0.3s ease;
     }
 
     body.light-mode {
@@ -42,103 +39,72 @@
       --highlight: #e94560;
     }
 
-    /* Sidebar */
-    #sidebar {
-      width: 0;
-      background: var(--section-bg);
-      overflow: hidden;
-      position: fixed;
-      top: 3.5rem;
-      left: 0;
-      height: calc(100% - 3.5rem);
-      z-index: 1000;
-      display: flex;
-      flex-direction: column;
-      transition: width 0.3s ease;
-      border-right: 1px solid #333;
-    }
-
-    #sidebar.show {
-      width: 220px;
-    }
-
-    #sidebar a {
-      color: var(--highlight);
-      padding: 1rem;
-      text-decoration: none;
-      font-weight: bold;
-      border-bottom: 1px solid #333;
-    }
-
-    #sidebar a:hover {
-      background: #333;
-      color: #fff;
-    }
-
-    /* Hamburger */
-    .hamburger {
-      position: fixed;
-      top: 1rem;
-      left: 1rem;
-      font-size: 1.8rem;
-      background: transparent;
-      border: none;
-      color: var(--highlight);
-      z-index: 1101;
-      cursor: pointer;
-    }
-
-    /* Main Content */
-    #main-content {
-      margin-left: 0;
-      padding: 2rem 1rem;
-      width: 100%;
-      transition: margin-left 0.3s ease;
-    }
-
-    #sidebar.show + #main-content {
-      margin-left: 220px;
-    }
-
     header {
       background: var(--header-bg);
       color: white;
-      text-align: center;
       padding: 3rem 1rem 2rem;
+      text-align: center;
       position: relative;
     }
 
     .hero-container {
       max-width: 1000px;
-      margin: 0 auto;
+      margin: auto;
     }
 
     .toggle-btn {
       position: absolute;
       top: 1rem;
       right: 1rem;
-      background: transparent;
       border: 2px solid var(--highlight);
+      background: transparent;
       color: var(--highlight);
       padding: 0.4rem 0.8rem;
       border-radius: 30px;
       font-weight: bold;
       cursor: pointer;
-      transition: background 0.3s, color 0.3s;
     }
 
-    .toggle-btn:hover {
-      background: var(--highlight);
-      color: black;
+    nav {
+      display: none;
+      flex-direction: column;
+      position: fixed;
+      top: 4rem;
+      left: 1rem;
+      background: var(--section-bg);
+      border-radius: 10px;
+      z-index: 999;
+    }
+
+    nav a {
+      color: var(--highlight);
+      padding: 1rem;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      background: #333;
+    }
+
+    .hamburger {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: transparent;
+      border: none;
+      font-size: 1.8rem;
+      color: var(--highlight);
+      cursor: pointer;
+      z-index: 1000;
     }
 
     section {
       padding: 2rem 1.5rem;
       max-width: 900px;
-      margin: auto;
+      margin: 2rem auto;
       background: var(--section-bg);
       border-radius: 10px;
-      margin-bottom: 2rem;
       display: none;
     }
 
@@ -148,28 +114,22 @@
 
     h2 {
       color: var(--highlight);
-      margin-bottom: 1rem;
     }
 
     .skills span {
+      display: inline-block;
       background: #2f3542;
-      color: #ffffff;
+      color: #fff;
       border-radius: 6px;
       padding: 0.4rem 0.8rem;
       margin: 0.3rem;
-      display: inline-block;
     }
 
     .project img {
-      max-width: 100%;
+      width: 100%;
       border-radius: 10px;
       margin-bottom: 1rem;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-      transition: transform 0.3s ease;
-    }
-
-    .project img:hover {
-      transform: scale(1.02);
     }
 
     footer {
@@ -178,28 +138,10 @@
       background: #121212;
       font-size: 0.9rem;
     }
-
-    a {
-      color: var(--highlight);
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 768px) {
-      #sidebar.show + #main-content {
-        margin-left: 220px;
-      }
-    }
   </style>
 </head>
 <body>
-  <!-- Hamburger -->
   <button class="hamburger" onclick="toggleMenu()">&#9776;</button>
-
-  <!-- Sidebar -->
   <nav id="sidebar">
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
@@ -209,66 +151,69 @@
     <a href="#contact">Contact</a>
   </nav>
 
-  <!-- Main -->
-  <div id="main-content">
-    <header>
-      <div class="hero-container">
-        <button class="toggle-btn" onclick="toggleTheme()">☀️ Light Mode</button>
-        <h1>Yohanen Dinagde Ejeta</h1>
-        <p>Tech Enthusiast | Machine Learning & Data Science | Open to Internships, Jobs, Remote Roles & Scholarships</p>
-      </div>
-    </header>
+  <header>
+    <div class="hero-container">
+      <button class="toggle-btn" onclick="toggleTheme()">☀️ Light Mode</button>
+      <h1>Yohanen Dinagde Ejeta</h1>
+      <p>Tech Enthusiast | Machine Learning & Data Science | Open to Internships, Jobs, Remote Roles & Scholarships</p>
+    </div>
+  </header>
 
-    <section id="about" class="active">
-      <h2>✨ About Me</h2>
-      <p>Hi! I'm Yohanen, a recent Bachelor of Computer Application (BCA) graduate from Uttaranchal University...</p>
-    </section>
+  <section id="about" class="active">
+    <h2>✨ About Me</h2>
+    <p>Hi! I'm Yohanen, a BCA graduate from Uttaranchal University. I'm passionate about building real-world tech solutions, exploring new technologies, and contributing to innovative communities.</p>
+  </section>
 
-    <section id="skills">
-      <h2>🔧 Skills</h2>
-      <div class="skills">
-        <span>Python</span><span>PHP</span><span>MySQL</span><span>CodeIgniter</span><span>HTML</span><span>CSS</span>
-        <span>JavaScript</span><span>Git</span><span>GitHub</span><span>Machine Learning</span><span>Communication</span>
-        <span>Critical Thinking</span><span>Teamwork</span><span>Problem Solving</span><span>Web Development</span>
-      </div>
-    </section>
+  <section id="skills">
+    <h2>🔧 Skills</h2>
+    <div class="skills">
+      <span>Python</span><span>PHP</span><span>MySQL</span><span>CodeIgniter</span><span>HTML</span><span>CSS</span>
+      <span>JavaScript</span><span>Git</span><span>GitHub</span><span>Machine Learning</span>
+      <span>Communication</span><span>Critical Thinking</span><span>Teamwork</span><span>Problem Solving</span>
+    </div>
+  </section>
 
-    <section id="projects">
-      <h2>📚 Featured Project</h2>
-      <p>Smart School Management System...</p>
-    </section>
+  <section id="projects">
+    <h2>📚 Featured Project</h2>
+    <h3>Smart School Management System</h3>
+    <div class="project">
+      <img src="loginpage.png" alt="Login Page">
+      <img src="admindashboard.png" alt="Admin Dashboard">
+    </div>
+    <p>A full-stack CodeIgniter-based system with user dashboards, attendance tracking, grades, and communication tools.</p>
+    <p>▶ <a href="https://github.com/yohanen/smart-school-management-system" target="_blank">View on GitHub</a></p>
+  </section>
 
-    <section id="resume">
-      <h2>📄 Download Resume</h2>
-      <p><a href="Resume.pdf" download>Download Resume (PDF)</a></p>
-    </section>
+  <section id="resume">
+    <h2>📄 Download Resume</h2>
+    <p><a href="Resume.pdf" download>Download Resume (PDF)</a></p>
+  </section>
 
-    <section id="testimonials">
-      <h2>📜 Testimonials</h2>
-      <p>“Yohanen is a highly dedicated individual...”</p>
-    </section>
+  <section id="testimonials">
+    <h2>📜 Testimonials</h2>
+    <p><em>"Mr. Yohanen Dinagde Ejeta is a highly dedicated and disciplined individual..."</em><br>— Prof. (Dr.) Sonal Sharma</p>
+    <p><em>"Yohanen has shown exceptional performance... His leadership and technical skills are outstanding."</em><br>— Dr. Sameer Dev Sharma</p>
+  </section>
 
-    <section id="contact">
-      <h2>✉ Contact</h2>
-      <p>
-        GitHub: <a href="https://github.com/yohanen">github.com/yohanen</a><br />
-        LinkedIn: <a href="https://linkedin.com/in/yohanen2021">linkedin.com/in/yohanen2021</a><br />
-        Email: <a href="mailto:yohanendinagde7@gmail.com">yohanendinagde7@gmail.com</a><br />
-        Phone: +91-7409283325
-      </p>
-    </section>
+  <section id="contact">
+    <h2>✉ Contact</h2>
+    <p>
+      GitHub: <a href="https://github.com/yohanen" target="_blank">github.com/yohanen</a><br>
+      LinkedIn: <a href="https://linkedin.com/in/yohanen2021" target="_blank">linkedin.com/in/yohanen2021</a><br>
+      Email: <a href="mailto:yohanendinagde7@gmail.com">yohanendinagde7@gmail.com</a><br>
+      Phone: +91-7409283325
+    </p>
+  </section>
 
-    <footer>
-      &copy; 2025 Yohanen Dinagde Ejeta. All rights reserved.
-    </footer>
-  </div>
+  <footer>
+    &copy; 2025 Yohanen Dinagde Ejeta. All rights reserved.
+  </footer>
 
   <script>
     const toggleBtn = document.querySelector('.toggle-btn');
-    const navLinks = document.querySelectorAll('#sidebar a');
+    const navLinks = document.querySelectorAll('nav a');
     const sections = document.querySelectorAll('section');
     const sidebar = document.getElementById('sidebar');
-    const mainContent = document.getElementById('main-content');
     const currentTheme = localStorage.getItem('theme');
 
     if (currentTheme === 'light') {
@@ -278,9 +223,13 @@
 
     function toggleTheme() {
       document.body.classList.toggle('light-mode');
-      toggleBtn.textContent = document.body.classList.contains('light-mode')
-        ? '🌙 Dark Mode' : '☀️ Light Mode';
-      localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+      const isLight = document.body.classList.contains('light-mode');
+      toggleBtn.textContent = isLight ? '🌙 Dark Mode' : '☀️ Light Mode';
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    }
+
+    function toggleMenu() {
+      sidebar.style.display = sidebar.style.display === 'flex' ? 'none' : 'flex';
     }
 
     function showSection(id) {
@@ -295,13 +244,9 @@
         e.preventDefault();
         const targetId = this.getAttribute('href').substring(1);
         showSection(targetId);
+        sidebar.style.display = 'none';
       });
     });
-
-    function toggleMenu() {
-      sidebar.classList.toggle('show');
-      mainContent.classList.toggle('shifted');
-    }
 
     window.addEventListener('DOMContentLoaded', () => {
       showSection('about');
