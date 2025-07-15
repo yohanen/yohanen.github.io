@@ -21,7 +21,7 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 80px;
+      scroll-padding-top: 60px;
     }
 
     body {
@@ -30,7 +30,7 @@
       padding: 0;
       background: var(--bg-color);
       color: var(--text-color);
-      transition: background 0.3s, color 0.3s;
+      display: flex;
     }
 
     body.light-mode {
@@ -42,28 +42,62 @@
       --highlight: #e94560;
     }
 
+    /* Sidebar Navigation */
     nav {
       background: var(--section-bg);
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      padding: 1rem;
-      position: sticky;
+      width: 220px;
+      min-height: 100vh;
+      position: fixed;
+      left: 0;
       top: 0;
+      padding-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      border-right: 1px solid #333;
+      transition: transform 0.3s ease-in-out;
       z-index: 1000;
-      border-bottom: 1px solid #333;
     }
 
     nav a {
       color: var(--highlight);
-      margin: 0.5rem 1rem;
       text-decoration: none;
+      padding: 0.8rem 1.2rem;
       font-weight: 600;
-      cursor: pointer;
     }
 
     nav a:hover {
-      text-decoration: underline;
+      background-color: #333;
+      color: white;
+    }
+
+    nav.collapsed {
+      transform: translateX(-100%);
+    }
+
+    /* Hamburger button */
+    .hamburger {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      background: transparent;
+      border: none;
+      font-size: 1.8rem;
+      color: var(--highlight);
+      z-index: 1100;
+      cursor: pointer;
+    }
+
+    /* Main Content Area */
+    main {
+      margin-left: 220px;
+      padding: 2rem 1rem;
+      width: 100%;
+      transition: margin-left 0.3s ease-in-out;
+    }
+
+    nav.collapsed + main {
+      margin-left: 0;
     }
 
     header {
@@ -153,10 +187,37 @@
     a:hover {
       text-decoration: underline;
     }
+
+    @media (max-width: 768px) {
+      nav {
+        transform: translateX(-100%);
+        position: fixed;
+        top: 0;
+        height: 100vh;
+        width: 200px;
+      }
+
+      nav.show {
+        transform: translateX(0);
+      }
+
+      main {
+        margin-left: 0;
+        padding-top: 4rem;
+      }
+
+      nav.show + main {
+        margin-left: 0;
+      }
+    }
   </style>
 </head>
 <body>
-  <nav>
+  <button class="hamburger" onclick="toggleMenu()">
+    &#9776;
+  </button>
+
+  <nav id="sidebar">
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
@@ -165,86 +226,77 @@
     <a href="#contact">Contact</a>
   </nav>
 
-  <header>
-    <div class="hero-container">
-      <button class="toggle-btn" onclick="toggleTheme()">☀️ Light Mode</button>
-      <h1>Yohanen Dinagde Ejeta</h1>
-      <p>Tech Enthusiast | Machine Learning & Data Science | Open to Internships, Jobs, Remote Roles & Scholarships</p>
-    </div>
-  </header>
+  <main>
+    <header>
+      <div class="hero-container">
+        <button class="toggle-btn" onclick="toggleTheme()">☀️ Light Mode</button>
+        <h1>Yohanen Dinagde Ejeta</h1>
+        <p>Tech Enthusiast | Machine Learning & Data Science | Open to Internships, Jobs, Remote Roles & Scholarships</p>
+      </div>
+    </header>
 
-  <section id="about" class="active">
-    <h2>✨ About Me</h2>
-    <p>Hi! I'm Yohanen, a recent Bachelor of Computer Application (BCA) graduate from Uttaranchal University. I'm passionate about building real-world tech solutions, exploring new technologies, and contributing to communities that value innovation and learning.</p>
-    <p>I love collaborating, solving real-life problems through code, and learning as I go. My focus is on combining education, technology, and social good.</p>
-  </section>
+    <section id="about" class="active">
+      <h2>✨ About Me</h2>
+      <p>Hi! I'm Yohanen, a recent Bachelor of Computer Application (BCA) graduate from Uttaranchal University. I'm passionate about building real-world tech solutions, exploring new technologies, and contributing to communities that value innovation and learning.</p>
+      <p>I love collaborating, solving real-life problems through code, and learning as I go. My focus is on combining education, technology, and social good.</p>
+    </section>
 
-  <section id="skills">
-    <h2>🔧 Skills</h2>
-    <div class="skills">
-      <span>Python</span>
-      <span>PHP</span>
-      <span>MySQL</span>
-      <span>CodeIgniter</span>
-      <span>HTML</span>
-      <span>CSS</span>
-      <span>JavaScript</span>
-      <span>Git</span>
-      <span>GitHub</span>
-      <span>Machine Learning</span>
-      <span>Communication</span>
-      <span>Critical Thinking</span>
-      <span>Teamwork</span>
-      <span>Problem Solving</span>
-      <span>Web Development</span>
-    </div>
-  </section>
+    <section id="skills">
+      <h2>🔧 Skills</h2>
+      <div class="skills">
+        <span>Python</span><span>PHP</span><span>MySQL</span><span>CodeIgniter</span><span>HTML</span><span>CSS</span>
+        <span>JavaScript</span><span>Git</span><span>GitHub</span><span>Machine Learning</span><span>Communication</span>
+        <span>Critical Thinking</span><span>Teamwork</span><span>Problem Solving</span><span>Web Development</span>
+      </div>
+    </section>
 
-  <section id="projects">
-    <h2>📚 Featured Project</h2>
-    <h3>Smart School Management System</h3>
-    <div class="project">
-      <img src="loginpage.png" alt="Smart School - Login Page" />
-      <img src="admindashboard.png" alt="Admin Dashboard View" />
-      <img src="teacherdashboard.png" alt="Teacher Dashboard View" />
-      <img src="parentdashboard.png" alt="Parent Dashboard View" />
-    </div>
-    <p>A full-stack web application built with CodeIgniter (PHP), MySQL, HTML, and CSS. Includes dashboards for Admin, Teacher, Student, and Parent for attendance tracking, grade management, library use, and communication tools.</p>
-    <p>▶ <a href="https://github.com/yohanen/smart-school-management-system" target="_blank">View on GitHub</a></p>
-  </section>
+    <section id="projects">
+      <h2>📚 Featured Project</h2>
+      <h3>Smart School Management System</h3>
+      <div class="project">
+        <img src="loginpage.png" alt="Smart School - Login Page" />
+        <img src="admindashboard.png" alt="Admin Dashboard View" />
+        <img src="teacherdashboard.png" alt="Teacher Dashboard View" />
+        <img src="parentdashboard.png" alt="Parent Dashboard View" />
+      </div>
+      <p>A full-stack web application built with CodeIgniter (PHP), MySQL, HTML, and CSS. Includes dashboards for Admin, Teacher, Student, and Parent for attendance tracking, grade management, library use, and communication tools.</p>
+      <p>▶ <a href="https://github.com/yohanen/smart-school-management-system" target="_blank">View on GitHub</a></p>
+    </section>
 
-  <section id="resume">
-    <h2>📄 Download Resume</h2>
-    <p>You can download my resume here: <a href="Resume.pdf" download>Download Resume (PDF)</a></p>
-  </section>
+    <section id="resume">
+      <h2>📄 Download Resume</h2>
+      <p>You can download my resume here: <a href="Resume.pdf" download>Download Resume (PDF)</a></p>
+    </section>
 
-  <section id="testimonials">
-    <h2>📜 Testimonials</h2>
-    <p><em>"Mr. Yohanen Dinagde Ejeta is a highly dedicated and disciplined individual who consistently demonstrated strong academic commitment and intellectual curiosity."</em><br /><strong>— Prof. (Dr.) Sonal Sharma</strong></p>
-    <p><em>"Yohanen has shown exceptional performance in academics, research, and student-led initiatives. His leadership and technical skills are outstanding."</em><br /><strong>— Dr. Sameer Dev Sharma</strong></p>
-  </section>
+    <section id="testimonials">
+      <h2>📜 Testimonials</h2>
+      <p><em>"Mr. Yohanen Dinagde Ejeta is a highly dedicated and disciplined individual who consistently demonstrated strong academic commitment and intellectual curiosity."</em><br /><strong>— Prof. (Dr.) Sonal Sharma</strong></p>
+      <p><em>"Yohanen has shown exceptional performance in academics, research, and student-led initiatives. His leadership and technical skills are outstanding."</em><br /><strong>— Dr. Sameer Dev Sharma</strong></p>
+    </section>
 
-  <section id="contact">
-    <h2>✉ Contact</h2>
-    <p>
-      GitHub: <a href="https://github.com/yohanen" target="_blank">github.com/yohanen</a><br />
-      LinkedIn: <a href="https://www.linkedin.com/in/yohanen2021" target="_blank">linkedin.com/in/yohanen2021</a><br />
-      Email: <a href="mailto:yohanendinagde7@gmail.com">yohanendinagde7@gmail.com</a><br />
-      Phone: +91-7409283325
-    </p>
-  </section>
+    <section id="contact">
+      <h2>✉ Contact</h2>
+      <p>
+        GitHub: <a href="https://github.com/yohanen" target="_blank">github.com/yohanen</a><br />
+        LinkedIn: <a href="https://www.linkedin.com/in/yohanen2021" target="_blank">linkedin.com/in/yohanen2021</a><br />
+        Email: <a href="mailto:yohanendinagde7@gmail.com">yohanendinagde7@gmail.com</a><br />
+        Phone: +91-7409283325
+      </p>
+    </section>
 
-  <footer>
-    &copy; 2025 Yohanen Dinagde Ejeta. All rights reserved.
-  </footer>
+    <footer>
+      &copy; 2025 Yohanen Dinagde Ejeta. All rights reserved.
+    </footer>
+  </main>
 
   <script>
     const toggleBtn = document.querySelector('.toggle-btn');
     const navLinks = document.querySelectorAll('nav a');
     const sections = document.querySelectorAll('section');
-
-    // Theme persistence
+    const sidebar = document.getElementById('sidebar');
     const currentTheme = localStorage.getItem('theme');
+
+    // Apply saved theme
     if (currentTheme === 'light') {
       document.body.classList.add('light-mode');
       toggleBtn.textContent = '🌙 Dark Mode';
@@ -262,9 +314,7 @@
     function showSection(id) {
       sections.forEach(sec => {
         sec.classList.remove('active');
-        if (sec.id === id) {
-          sec.classList.add('active');
-        }
+        if (sec.id === id) sec.classList.add('active');
       });
     }
 
@@ -273,7 +323,17 @@
         e.preventDefault();
         const targetId = this.getAttribute('href').substring(1);
         showSection(targetId);
+        if (window.innerWidth <= 768) sidebar.classList.remove('show');
       });
+    });
+
+    function toggleMenu() {
+      sidebar.classList.toggle('show');
+    }
+
+    // Initial section
+    window.addEventListener('DOMContentLoaded', () => {
+      showSection('about');
     });
   </script>
 </body>
