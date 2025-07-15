@@ -30,7 +30,6 @@
       padding: 0;
       background: var(--bg-color);
       color: var(--text-color);
-      display: flex;
     }
 
     body.light-mode {
@@ -42,44 +41,11 @@
       --highlight: #e94560;
     }
 
-    /* Sidebar Navigation */
-    nav {
-      background: var(--section-bg);
-      width: 220px;
-      min-height: 100vh;
-      position: fixed;
-      left: 0;
-      top: 0;
-      padding-top: 4rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      border-right: 1px solid #333;
-      transition: transform 0.3s ease-in-out;
-      z-index: 1000;
-    }
-
-    nav a {
-      color: var(--highlight);
-      text-decoration: none;
-      padding: 0.8rem 1.2rem;
-      font-weight: 600;
-    }
-
-    nav a:hover {
-      background-color: #333;
-      color: white;
-    }
-
-    nav.collapsed {
-      transform: translateX(-100%);
-    }
-
-    /* Hamburger button */
+    /* Hamburger Button */
     .hamburger {
       position: fixed;
       top: 1rem;
-      right: 1rem;
+      left: 1rem;
       background: transparent;
       border: none;
       font-size: 1.8rem;
@@ -88,16 +54,40 @@
       cursor: pointer;
     }
 
-    /* Main Content Area */
-    main {
-      margin-left: 220px;
-      padding: 2rem 1rem;
-      width: 100%;
-      transition: margin-left 0.3s ease-in-out;
+    /* Sidebar Navigation */
+    nav {
+      background: var(--section-bg);
+      width: 220px;
+      position: fixed;
+      top: 3.5rem; /* push below hamburger icon */
+      left: 1rem;
+      display: none;
+      flex-direction: column;
+      border: 1px solid #333;
+      z-index: 1000;
+      border-radius: 8px;
     }
 
-    nav.collapsed + main {
-      margin-left: 0;
+    nav.show {
+      display: flex;
+    }
+
+    nav a {
+      color: var(--highlight);
+      text-decoration: none;
+      padding: 0.8rem 1rem;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      background-color: #333;
+      color: white;
+    }
+
+    /* Main Content */
+    main {
+      padding: 2rem 1rem;
+      margin-top: 4rem;
     }
 
     header {
@@ -116,7 +106,7 @@
     .toggle-btn {
       position: absolute;
       top: 1rem;
-      left: 1rem;
+      right: 1rem;
       background: transparent;
       border: 2px solid var(--highlight);
       color: var(--highlight);
@@ -188,31 +178,16 @@
       text-decoration: underline;
     }
 
-    @media (max-width: 768px) {
+    @media (min-width: 768px) {
       nav {
-        transform: translateX(-100%);
         position: fixed;
-        top: 0;
-        height: 100vh;
-        width: 200px;
-      }
-
-      nav.show {
-        transform: translateX(0);
+        top: 3.5rem;
+        left: 1rem;
       }
 
       main {
-        margin-left: 0;
-        padding-top: 4rem;
-      }
-
-      nav.show + main {
-        margin-left: 0;
-      }
-
-      .toggle-btn {
-        left: auto;
-        right: 4rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
       }
     }
   </style>
@@ -222,7 +197,7 @@
   <button class="hamburger" onclick="toggleMenu()">&#9776;</button>
 
   <!-- Sidebar -->
-  <nav id="sidebar" class="collapsed">
+  <nav id="sidebar">
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
@@ -328,7 +303,7 @@
         e.preventDefault();
         const targetId = this.getAttribute('href').substring(1);
         showSection(targetId);
-        if (window.innerWidth <= 768) sidebar.classList.remove('show');
+        sidebar.classList.remove('show');
       });
     });
 
