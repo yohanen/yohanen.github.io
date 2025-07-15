@@ -21,7 +21,6 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 60px;
     }
 
     body {
@@ -30,6 +29,8 @@
       padding: 0;
       background: var(--bg-color);
       color: var(--text-color);
+      display: flex;
+      transition: all 0.3s ease;
     }
 
     body.light-mode {
@@ -41,53 +42,62 @@
       --highlight: #e94560;
     }
 
-    /* Hamburger Button */
+    /* Sidebar */
+    #sidebar {
+      width: 0;
+      background: var(--section-bg);
+      overflow: hidden;
+      position: fixed;
+      top: 3.5rem;
+      left: 0;
+      height: calc(100% - 3.5rem);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      transition: width 0.3s ease;
+      border-right: 1px solid #333;
+    }
+
+    #sidebar.show {
+      width: 220px;
+    }
+
+    #sidebar a {
+      color: var(--highlight);
+      padding: 1rem;
+      text-decoration: none;
+      font-weight: bold;
+      border-bottom: 1px solid #333;
+    }
+
+    #sidebar a:hover {
+      background: #333;
+      color: #fff;
+    }
+
+    /* Hamburger */
     .hamburger {
       position: fixed;
       top: 1rem;
       left: 1rem;
+      font-size: 1.8rem;
       background: transparent;
       border: none;
-      font-size: 1.8rem;
       color: var(--highlight);
       z-index: 1101;
       cursor: pointer;
     }
 
-    /* Sidebar Navigation */
-    nav {
-      background: var(--section-bg);
-      width: 220px;
-      position: fixed;
-      top: 3.5rem; /* push below hamburger icon */
-      left: 1rem;
-      display: none;
-      flex-direction: column;
-      border: 1px solid #333;
-      z-index: 1000;
-      border-radius: 8px;
-    }
-
-    nav.show {
-      display: flex;
-    }
-
-    nav a {
-      color: var(--highlight);
-      text-decoration: none;
-      padding: 0.8rem 1rem;
-      font-weight: 600;
-    }
-
-    nav a:hover {
-      background-color: #333;
-      color: white;
-    }
-
     /* Main Content */
-    main {
+    #main-content {
+      margin-left: 0;
       padding: 2rem 1rem;
-      margin-top: 4rem;
+      width: 100%;
+      transition: margin-left 0.3s ease;
+    }
+
+    #sidebar.show + #main-content {
+      margin-left: 220px;
     }
 
     header {
@@ -178,22 +188,15 @@
       text-decoration: underline;
     }
 
-    @media (min-width: 768px) {
-      nav {
-        position: fixed;
-        top: 3.5rem;
-        left: 1rem;
-      }
-
-      main {
-        padding-left: 1rem;
-        padding-right: 1rem;
+    @media (max-width: 768px) {
+      #sidebar.show + #main-content {
+        margin-left: 220px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Hamburger Icon -->
+  <!-- Hamburger -->
   <button class="hamburger" onclick="toggleMenu()">&#9776;</button>
 
   <!-- Sidebar -->
@@ -206,8 +209,8 @@
     <a href="#contact">Contact</a>
   </nav>
 
-  <!-- Main Content -->
-  <main>
+  <!-- Main -->
+  <div id="main-content">
     <header>
       <div class="hero-container">
         <button class="toggle-btn" onclick="toggleTheme()">☀️ Light Mode</button>
@@ -218,8 +221,7 @@
 
     <section id="about" class="active">
       <h2>✨ About Me</h2>
-      <p>Hi! I'm Yohanen, a recent Bachelor of Computer Application (BCA) graduate from Uttaranchal University. I'm passionate about building real-world tech solutions, exploring new technologies, and contributing to communities that value innovation and learning.</p>
-      <p>I love collaborating, solving real-life problems through code, and learning as I go. My focus is on combining education, technology, and social good.</p>
+      <p>Hi! I'm Yohanen, a recent Bachelor of Computer Application (BCA) graduate from Uttaranchal University...</p>
     </section>
 
     <section id="skills">
@@ -233,33 +235,24 @@
 
     <section id="projects">
       <h2>📚 Featured Project</h2>
-      <h3>Smart School Management System</h3>
-      <div class="project">
-        <img src="loginpage.png" alt="Login Page" />
-        <img src="admindashboard.png" alt="Admin Dashboard" />
-        <img src="teacherdashboard.png" alt="Teacher Dashboard" />
-        <img src="parentdashboard.png" alt="Parent Dashboard" />
-      </div>
-      <p>A full-stack web application built with CodeIgniter (PHP), MySQL, HTML, and CSS. Includes dashboards for Admin, Teacher, Student, and Parent for attendance tracking, grade management, library use, and communication tools.</p>
-      <p>▶ <a href="https://github.com/yohanen/smart-school-management-system" target="_blank">View on GitHub</a></p>
+      <p>Smart School Management System...</p>
     </section>
 
     <section id="resume">
       <h2>📄 Download Resume</h2>
-      <p>You can download my resume here: <a href="Resume.pdf" download>Download Resume (PDF)</a></p>
+      <p><a href="Resume.pdf" download>Download Resume (PDF)</a></p>
     </section>
 
     <section id="testimonials">
       <h2>📜 Testimonials</h2>
-      <p><em>"Mr. Yohanen Dinagde Ejeta is a highly dedicated and disciplined individual who consistently demonstrated strong academic commitment and intellectual curiosity."</em><br><strong>— Prof. (Dr.) Sonal Sharma</strong></p>
-      <p><em>"Yohanen has shown exceptional performance in academics, research, and student-led initiatives. His leadership and technical skills are outstanding."</em><br><strong>— Dr. Sameer Dev Sharma</strong></p>
+      <p>“Yohanen is a highly dedicated individual...”</p>
     </section>
 
     <section id="contact">
       <h2>✉ Contact</h2>
       <p>
-        GitHub: <a href="https://github.com/yohanen" target="_blank">github.com/yohanen</a><br />
-        LinkedIn: <a href="https://www.linkedin.com/in/yohanen2021" target="_blank">linkedin.com/in/yohanen2021</a><br />
+        GitHub: <a href="https://github.com/yohanen">github.com/yohanen</a><br />
+        LinkedIn: <a href="https://linkedin.com/in/yohanen2021">linkedin.com/in/yohanen2021</a><br />
         Email: <a href="mailto:yohanendinagde7@gmail.com">yohanendinagde7@gmail.com</a><br />
         Phone: +91-7409283325
       </p>
@@ -268,27 +261,26 @@
     <footer>
       &copy; 2025 Yohanen Dinagde Ejeta. All rights reserved.
     </footer>
-  </main>
+  </div>
 
   <script>
     const toggleBtn = document.querySelector('.toggle-btn');
-    const navLinks = document.querySelectorAll('nav a');
+    const navLinks = document.querySelectorAll('#sidebar a');
     const sections = document.querySelectorAll('section');
     const sidebar = document.getElementById('sidebar');
+    const mainContent = document.getElementById('main-content');
     const currentTheme = localStorage.getItem('theme');
 
     if (currentTheme === 'light') {
       document.body.classList.add('light-mode');
       toggleBtn.textContent = '🌙 Dark Mode';
-    } else {
-      toggleBtn.textContent = '☀️ Light Mode';
     }
 
     function toggleTheme() {
       document.body.classList.toggle('light-mode');
-      const isLight = document.body.classList.contains('light-mode');
-      toggleBtn.textContent = isLight ? '🌙 Dark Mode' : '☀️ Light Mode';
-      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+      toggleBtn.textContent = document.body.classList.contains('light-mode')
+        ? '🌙 Dark Mode' : '☀️ Light Mode';
+      localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
     }
 
     function showSection(id) {
@@ -303,12 +295,12 @@
         e.preventDefault();
         const targetId = this.getAttribute('href').substring(1);
         showSection(targetId);
-        sidebar.classList.remove('show');
       });
     });
 
     function toggleMenu() {
       sidebar.classList.toggle('show');
+      mainContent.classList.toggle('shifted');
     }
 
     window.addEventListener('DOMContentLoaded', () => {
